@@ -18,13 +18,14 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+      background: linear-gradient(to bottom right, #fefcea, #f1daff);
     }
 
     header {
       display: flex;
       align-items: center;
       padding: 20px;
-      background-color: #ffffff;
+      background-color: #ffffffcc;
       border-bottom: 1px solid #ddd;
       justify-content: space-between;
     }
@@ -48,18 +49,36 @@
 
     .language-selector {
       font-size: 16px;
-      color: #888;
+      color: #555;
     }
 
     main {
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 50px 20px;
     }
 
-    /* Increase Watson Assistant chat window size */
-    iframe[title="Watson Assistant Chat"] {
-      width: 400px !important;
-      height: 600px !important;
-      max-width: none !important;
+    .hero h2 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #666;
+    }
+
+    #watson-chat {
+      width: 100%;
+      max-width: 800px;
+      height: 600px;
+      margin: 40px auto;
+      border-radius: 10px;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -74,18 +93,33 @@
   </header>
 
   <main>
-    <!-- You can add more content here later -->
+    <div class="hero">
+      <h2>🌍 Learn Languages the Fun Way with Linguava!</h2>
+      <p>Chat with our friendly birdy bot to learn English, Spanish, French & more 🐦</p>
+    </div>
+
+    <!-- Embedded Watson Chat Here -->
+    <div id="watson-chat"></div>
   </main>
 
-  <!-- Watson Assistant Chat Widget Script -->
+  <!-- Watson Assistant Chat Widget Script (EMBEDDED MODE) -->
   <script>
     window.watsonAssistantChatOptions = {
-      integrationID: "YOUR-INTEGRATION-ID", // Replace this
-      region: "us-south", // Update region if different
-      serviceInstanceID: "YOUR-SERVICE-INSTANCE-ID", // Replace this
-      onLoad: function(instance) { instance.render(); }
+      integrationID: "YOUR-INTEGRATION-ID", // 🔁 Replace this
+      region: "us-south",                    // ✅ Use your region
+      serviceInstanceID: "YOUR-SERVICE-ID",  // 🔁 Replace this
+      element: document.getElementById("watson-chat"),
+      showLauncher: false, // No floating icon
+      onLoad: function(instance) {
+        instance.render().then(function() {
+          instance.updateCSSVariables({
+            '--max-width': '100%',
+            '--min-height': '600px'
+          });
+        });
+      }
     };
-    setTimeout(function(){
+    setTimeout(function () {
       const t = document.createElement('script');
       t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
       document.head.appendChild(t);
@@ -96,9 +130,8 @@
 </html>
 
 
-
-
-
+   
+ 
 
 
 
