@@ -10,116 +10,205 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
     }
 
     body {
-      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #fceabb, #f8b500, #fbc2eb, #a6c1ee);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      overflow: hidden;
+      position: relative;
       min-height: 100vh;
-      width: 100%;
       display: flex;
       flex-direction: column;
-      background: linear-gradient(to bottom right, #fefcea, #f1daff);
     }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating Flower Animation */
+    .flower {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-image: url('https://i.ibb.co/g3FfsCJ/flower.png'); /* Replace with your own flower if needed */
+      background-size: cover;
+      opacity: 0.6;
+      animation: floatFlower linear infinite;
+    }
+
+    @keyframes floatFlower {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .flower:nth-child(1) { left: 10%; animation-duration: 18s; animation-delay: 0s; }
+    .flower:nth-child(2) { left: 25%; animation-duration: 24s; animation-delay: 3s; }
+    .flower:nth-child(3) { left: 40%; animation-duration: 20s; animation-delay: 5s; }
+    .flower:nth-child(4) { left: 60%; animation-duration: 22s; animation-delay: 2s; }
+    .flower:nth-child(5) { left: 80%; animation-duration: 19s; animation-delay: 1s; }
 
     header {
       display: flex;
-      align-items: center;
-      padding: 20px;
-      background-color: #ffffffcc;
-      border-bottom: 1px solid #ddd;
       justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(255, 255, 255, 0.85);
+      z-index: 2;
     }
 
-    .logo {
+    .logo-container {
       display: flex;
       align-items: center;
+      gap: 10px;
     }
 
-    .logo img {
-      height: 60px;
-      margin-right: 10px;
+    .logo-container img {
+      height: 50px;
     }
 
-    .logo h1 {
+    .chatbot-name {
       font-size: 24px;
-      background: linear-gradient(to right, #9999e7, #59c3c3);
+      font-weight: bold;
+      background: linear-gradient(45deg, #f12711, #f5af19, #43cea2, #185a9d);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shine 3s linear infinite;
     }
 
-    .language-selector {
-      font-size: 16px;
-      color: #555;
+    @keyframes shine {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
     }
 
-    main {
-      flex-grow: 1;
+    .language-select {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .main-container {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      padding: 50px 20px;
+      padding: 60px 20px;
+      z-index: 2;
     }
 
-    .hero h2 {
+    .main-container h1 {
       font-size: 32px;
-      color: #333;
-      margin-bottom: 10px;
+      color: #222;
+      margin-bottom: 20px;
     }
 
-    .hero p {
-      font-size: 18px;
-      color: #666;
+    .mascot-img {
+      max-width: 200px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
     }
 
     #watson-chat {
+      margin-top: 40px;
       width: 100%;
       max-width: 800px;
       height: 600px;
-      margin: 40px auto;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: #ffffffdd;
+      padding: 12px;
+      text-align: center;
+      font-size: 14px;
+      color: #444;
+      border-top: 1px solid #ddd;
+      z-index: 2;
+    }
+
+    .language-flags span {
+      margin: 0 8px;
+    }
+
+    @media (max-width: 768px) {
+      #watson-chat {
+        height: 500px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Animated Flowers -->
+  <div class="flower"></div>
+  <div class="flower"></div>
+  <div class="flower"></div>
+  <div class="flower"></div>
+  <div class="flower"></div>
+
+  <!-- Top Bar -->
   <header>
-    <div class="logo">
-      <img src="https://i.postimg.cc/3Ngt8nFb/lingava.png" alt="Linguava Logo" />
-      <h1>Linguava</h1>
+    <div class="logo-container">
+      <img src="lingava.png" alt="Linguava Logo" />
+      <span class="chatbot-name">Linguava</span>
     </div>
-    <div class="language-selector">SITE LANGUAGE: ENGLISH</div>
+    <div class="language-select">SITE LANGUAGE: ENGLISH ⌄</div>
   </header>
 
-  <main>
-    <div class="hero">
-      <h2>🌍 Learn Languages the Fun Way with Linguava!</h2>
-      <p>Chat with our friendly birdy bot to learn English, Spanish, French & more 🐦</p>
-    </div>
+  <!-- Main Content -->
+  <main class="main-container">
+    <h1>🌸 Learn Languages the Fun Way with Linguava!</h1>
+    <img src="lingava.png" alt="Linguava Mascot" class="mascot-img" />
 
-    <!-- Embedded Watson Chat Here -->
     <div id="watson-chat"></div>
   </main>
 
-  <!-- Watson Assistant Chat Widget Script (EMBEDDED MODE) -->
+  <!-- Footer -->
+  <footer>
+    <div class="language-flags">
+      <span>🇺🇸 English</span>
+      <span>🇪🇸 Spanish</span>
+      <span>🇫🇷 French</span>
+      <span>🇩🇪 German</span>
+      <span>🇮🇳 Hindi</span>
+    </div>
+    <p>&copy; 2025 Linguava. All rights reserved.</p>
+  </footer>
+
+  <!-- Watson Chat Widget Script -->
   <script>
     window.watsonAssistantChatOptions = {
-      integrationID: "YOUR-INTEGRATION-ID", // 🔁 Replace this
-      region: "us-south",                    // ✅ Use your region
-      serviceInstanceID: "YOUR-SERVICE-ID",  // 🔁 Replace this
+      integrationID: "939d047e-3175-4c10-b598-d8db0b82baf6",
+      region: "us-south",
+      serviceInstanceID: "3e9498a9-924b-4f71-831c-0522f2be3709",
       element: document.getElementById("watson-chat"),
-      showLauncher: false, // No floating icon
-      onLoad: function(instance) {
-        instance.render().then(function() {
-          instance.updateCSSVariables({
-            '--max-width': '100%',
-            '--min-height': '600px'
-          });
+      showLauncher: false,
+      onLoad: async function(instance) {
+        await instance.render();
+        instance.updateCSSVariables({
+          '--max-width': '100%',
+          '--min-height': '600px'
         });
       }
     };
-    setTimeout(function () {
+    setTimeout(function() {
       const t = document.createElement('script');
       t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
       document.head.appendChild(t);
@@ -128,14 +217,6 @@
 
 </body>
 </html>
-
-
-   
- 
-
-
-
-
 
 
 
