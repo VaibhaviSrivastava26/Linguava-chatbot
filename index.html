@@ -15,17 +15,16 @@
     body {
       font-family: 'Quicksand', sans-serif;
       height: 100vh;
-      background: linear-gradient(135deg, #2e003e, #8e2de2, #4a00e0);
+      background: linear-gradient(135deg, #fdfbfb, #ebedee, #d7e1ec, #fcefee);
       background-size: 400% 400%;
-      animation: gradientShift 10s ease infinite;
+      animation: pastelFlow 12s ease infinite;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      color: white;
+      justify-content: center;
     }
 
-    @keyframes gradientShift {
+    @keyframes pastelFlow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
@@ -33,6 +32,9 @@
 
     header {
       width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
@@ -52,35 +54,30 @@
 
     .logo h1 {
       font-size: 28px;
-      background: linear-gradient(to right, #ffe6fa, #ccefff);
+      background: linear-gradient(to right, #9999e7, #59c3c3);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .language-selector {
       font-size: 16px;
-      color: #eee;
+      color: #444;
     }
 
-    main {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .hero {
       text-align: center;
-      width: 100%;
+      margin-bottom: 20px;
     }
 
     .hero h2 {
       font-size: 32px;
-      margin-bottom: 12px;
+      color: #333;
+      margin-bottom: 10px;
     }
 
     .hero p {
       font-size: 18px;
-      color: #ddd;
-      margin-bottom: 40px;
+      color: #555;
     }
 
     #watson-chat {
@@ -89,8 +86,8 @@
       height: 600px;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
       background: white;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
@@ -104,13 +101,12 @@
     <div class="language-selector">SITE LANGUAGE: ENGLISH</div>
   </header>
 
-  <main>
-    <div class="hero">
-      <h2>Hi! I’m Linguava 🐦</h2>
-      <p>Your friendly language-learning assistant</p>
-    </div>
-    <div id="watson-chat"></div>
-  </main>
+  <div class="hero">
+    <h2>Hi! I’m Linguava 🐦</h2>
+    <p>Your friendly language-learning assistant</p>
+  </div>
+
+  <div id="watson-chat"></div>
 
   <script>
     window.watsonAssistantChatOptions = {
@@ -137,6 +133,8 @@
 
 </body>
 </html>
+
+
 
 
 
