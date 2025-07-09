@@ -14,22 +14,21 @@
 
     body {
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom right, #fefcea, #f1daff);
+      background: linear-gradient(135deg, #ffe8ec, #dbefff);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      position: relative;
-      overflow: hidden;
+      align-items: center;
     }
 
     header {
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
-      background-color: #ffffffcc;
-      border-bottom: 1px solid #eee;
-      z-index: 2;
+      background-color: #ffffffdd;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
     .logo {
@@ -39,7 +38,7 @@
 
     .logo img {
       height: 60px;
-      margin-right: 12px;
+      margin-right: 10px;
     }
 
     .logo h1 {
@@ -55,10 +54,14 @@
     }
 
     main {
-      flex-grow: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
       text-align: center;
-      padding: 50px 20px;
-      z-index: 2;
+      width: 100%;
     }
 
     main h2 {
@@ -74,56 +77,34 @@
     }
 
     #watson-chat {
+      width: 100%;
       max-width: 800px;
-      margin: 0 auto;
       height: 600px;
       border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      z-index: 2;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
 
     footer {
+      width: 100%;
       text-align: center;
       padding: 15px;
       background: #ffffffdd;
       font-size: 14px;
-      border-top: 1px solid #ddd;
-      z-index: 2;
+      border-top: 1px solid #ccc;
     }
 
-    /* Floating Flower Animation */
-    .flower {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background-image: url('https://i.postimg.cc/7ZJYjTPg/flower.jpg');
-      background-size: cover;
-      opacity: 0.6;
-      animation: floatFlower linear infinite;
-      z-index: 0;
+    @media (max-width: 768px) {
+      main h2 {
+        font-size: 24px;
+      }
+      #watson-chat {
+        height: 500px;
+      }
     }
-
-    @keyframes floatFlower {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-    }
-
-    .flower:nth-child(1) { left: 10%; animation-duration: 18s; animation-delay: 0s; }
-    .flower:nth-child(2) { left: 25%; animation-duration: 24s; animation-delay: 3s; }
-    .flower:nth-child(3) { left: 40%; animation-duration: 20s; animation-delay: 5s; }
-    .flower:nth-child(4) { left: 60%; animation-duration: 22s; animation-delay: 2s; }
-    .flower:nth-child(5) { left: 80%; animation-duration: 19s; animation-delay: 1s; }
   </style>
 </head>
 <body>
-
-  <!-- Animated Flowers -->
-  <div class="flower"></div>
-  <div class="flower"></div>
-  <div class="flower"></div>
-  <div class="flower"></div>
-  <div class="flower"></div>
 
   <!-- Header -->
   <header>
@@ -134,11 +115,10 @@
     <div class="language-selector">SITE LANGUAGE: ENGLISH</div>
   </header>
 
-  <!-- Main -->
+  <!-- Main Section -->
   <main>
     <h2>🌍 Learn Languages the Fun Way with Linguava!</h2>
     <p>Chat with our friendly birdy bot to learn English, Spanish, French & more 🐦</p>
-
     <div id="watson-chat"></div>
   </main>
 
@@ -147,12 +127,12 @@
     &copy; 2025 Linguava. All rights reserved.
   </footer>
 
-  <!-- Watson Chat Widget Script (Embedded Mode) -->
+  <!-- Watson Assistant Chat Script -->
   <script>
     window.watsonAssistantChatOptions = {
-      integrationID: "939d047e-3175-4c10-b598-d8db0b82baf6", // ✅ Your integration ID
+      integrationID: "939d047e-3175-4c10-b598-d8db0b82baf6", // Replace with your actual integration ID
       region: "us-south",
-      serviceInstanceID: "3e9498a9-924b-4f71-831c-0522f2be3709", // ✅ Your service instance ID
+      serviceInstanceID: "3e9498a9-924b-4f71-831c-0522f2be3709", // Replace with your actual service instance ID
       element: document.getElementById("watson-chat"),
       showLauncher: false,
       onLoad: async function(instance) {
@@ -172,9 +152,6 @@
 
 </body>
 </html>
-
-
-
 
 
 
